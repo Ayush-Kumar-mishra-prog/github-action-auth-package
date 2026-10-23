@@ -12,7 +12,7 @@ const verifyToken = (publicKey) => (req, res, next) => {
   const header = req.headers.authorization;
   const token = header?.startsWith("Bearer ")
     ? header.split(" ")[1]
-    : req.cookies?.token; // cookie-parser lagana padega
+    : req.cookies?.token; 
 
   if (!token) return next(new AppError(401, "Token missing"));
 
@@ -33,7 +33,7 @@ const checkRole = (...allowed) => (req, res, next) => {
   next();
 };
 
-// 3. Central error handler (sabse last mein lagana)
+
 const errorHandler = (err, req, res, next) => {
   const status = err.statusCode || 500;
   res.status(status).json({
